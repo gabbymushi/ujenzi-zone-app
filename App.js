@@ -33,6 +33,7 @@ import MafundiConnect from './components/MafundiConnect';
 import LoginScreen from './components/LoginScreen';
 import Signup from './components/Signup';
 import MafundiList from './components/MafundiList';
+import FundiProfile from './components/FundiProfile';
  
 //Import Custom Sidebar
 import CustomSidebarMenu from './CustomSidebarMenu';
@@ -90,6 +91,17 @@ const FirstActivity_StackNavigator = createStackNavigator({
     screen: MafundiList,
     navigationOptions: ({ navigation }) => ({
       title: 'Mafundi List',
+   //   headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#455a64',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+  FundiProfile: {
+    screen: FundiProfile,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Fundi Profile',
    //   headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#455a64',
