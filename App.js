@@ -26,13 +26,17 @@ import {createStackNavigator} from 'react-navigation-stack';
  
 //Import all the screens
 import Screen1 from './components/ScreenOne';
+
 import Screen2 from './components/ScreenTwo';
 import Screen3 from './components/ScreenThree';
+import MafundiConnect from './components/MafundiConnect';
 import LoginScreen from './components/LoginScreen';
 import Signup from './components/Signup';
+import MafundiList from './components/MafundiList';
  
 //Import Custom Sidebar
 import CustomSidebarMenu from './CustomSidebarMenu';
+import { startAsync } from 'expo/build/AR';
  
 global.currentScreenIndex = 0;
 //Navigation Drawer Structure for all screen
@@ -65,6 +69,28 @@ const FirstActivity_StackNavigator = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Dashboard',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#455a64',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+  MafundiConnect: {
+    screen: MafundiConnect,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Mafundi Connect',
+   //   headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#455a64',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+  MafundiList: {
+    screen: MafundiList,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Mafundi List',
+   //   headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#455a64',
       },
@@ -105,6 +131,21 @@ const Screen3_StackNavigator = createStackNavigator({
     }),
   },
 });
+//Stack Navigator for the Third Option of Navigation Drawer
+/* const Screen4_StackNavigator = createStackNavigator({
+  //All the screen from the Third Option will be indexed here
+  MafundiConnect: {
+    screen: MafundiConnect,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Mafundi Connect',
+   //   headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#455a64',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+}); */
  
 //Drawer Navigator Which will provide the structure of our App
 const DrawerNavigatorExample = createDrawerNavigator(
@@ -128,6 +169,13 @@ const DrawerNavigatorExample = createDrawerNavigator(
         drawerLabel: 'Demo Screen Three',
       },
     },
+/*     NavScreen4: {
+      screen: Screen4_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Demo Screen Three',
+        header: "e"
+      },
+    }, */
   },
   {
     //For the Custom sidebar menu we have to provide our CustomSidebarMenu
