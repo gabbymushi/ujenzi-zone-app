@@ -97,6 +97,11 @@ export default class MafundiList extends Component {
               leftAvatar={{ source: { uri: item.picture.thumbnail } }}
               title={`${item.name.first} ${item.name.last}`}
               subtitle={item.email}
+              onPress={() => {
+                //alert(item.navigateTo);
+                //global.currentScreenIndex = key;
+                this.props.navigation.navigate("FundiProfile");
+            }}
             />
           )}
           keyExtractor={item => item.email}
