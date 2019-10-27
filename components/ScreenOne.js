@@ -10,14 +10,14 @@ export default class ScreenOne extends Component {
         super(props);
         this.state = {
             GridViewItems: [
-                { key: 'Mafundi Connect', navOptionThumb: 'build' },
-                { key: 'Suppliers', navOptionThumb: 'build' },
-                { key: 'Quick Services', navOptionThumb: 'build' },
-                { key: 'Four', navOptionThumb: 'build' },
-                { key: 'Five', navOptionThumb: 'build' },
-                { key: 'SiX', navOptionThumb: 'build' },
-                { key: 'Seven', navOptionThumb: 'build' },
-                { key: 'Eight', navOptionThumb: 'build' },
+                { key: 'Mafundi Connect', navOptionThumb: 'build' ,navigateTo:'MafundiConnect'},
+                { key: 'Suppliers', navOptionThumb: 'build' ,navigateTo:'MafundiConnect1'},
+                { key: 'Quick Services', navOptionThumb: 'build' ,navigateTo:'MafundiConnect2'},
+                { key: 'Four', navOptionThumb: 'build',navigateTo:'MafundiConnect3' },
+                { key: 'Five', navOptionThumb: 'build' ,navigateTo:'MafundiConnect4'},
+                { key: 'SiX', navOptionThumb: 'build',navigateTo:'MafundiConnect5' },
+                { key: 'Seven', navOptionThumb: 'build',navigateTo:'MafundiConnect6' },
+                { key: 'Eight', navOptionThumb: 'build' ,navigateTo:'MafundiConnect7'},
                 /*           { key: 'Five' },
                           { key: 'Six' },
                           { key: 'Seven' },
@@ -50,7 +50,11 @@ export default class ScreenOne extends Component {
                     data={this.state.GridViewItems}
                     renderItem={({ item }) => <View style={styles.GridViewBlockStyle}>
                         <Icon name={item.navOptionThumb} size={25} color="#808080" />
-                        <Text style={styles.GridViewInsideTextItemStyle} onPress={this.GetGridViewItem.bind(this, item.key)} >
+                        <Text style={styles.GridViewInsideTextItemStyle} onPress={() => {
+                            //alert(item.navigateTo);
+                            //global.currentScreenIndex = key;
+                            this.props.navigation.navigate(item.navigateTo);
+                        }} >
                             {item.key} </Text>
                     </View>}
                     numColumns={2}
@@ -78,8 +82,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 100,
         margin: 5,
-        /*   backgroundColor: '#00BCD4', */
         backgroundColor: '#455a64',
+        //backgroundColor: '#00BCD4',
         borderRadius: 5,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
