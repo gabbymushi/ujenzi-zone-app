@@ -12,12 +12,16 @@ export default class FundiProfile extends Component {
             <SafeAreaView style={styles.container}>
                 <ScrollView showsHorizontalScrollIndicator={false}>
                     <View style={styles.titleBar}>
-
                     </View>
                     <View style={{ alignSelf: 'center' }}>
                         <View style={styles.profileImage}>
-                            <Image source={require("../images/drawer.png")}></Image>
+                            <Image source={require("../images/drawer.png")} style={styles.image}></Image>
                         </View>
+                    </View>
+                    {/* <View style={styles.active}></View> */}
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.text,{fontWeight:"200",fontSize:36}}>Gabriel Patrick </Text>
+                        <Text style={styles.text,{color:"#AEB5BC",fontSize:14}}>Fundi Mwashi</Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -48,5 +52,26 @@ const styles = StyleSheet.create({
         height: 150,
         borderRadius: 100,
         overflow:"hidden"
+    },
+    titleBar: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: 24,
+        marginHorizontal:16
+    },
+    active: {
+        backgroundColor: "#34FFB9",
+        position: "absolute",
+        bottom: 28,
+        left:10,
+        padding:10,
+        height:20,
+        width:20,
+        borderRadius:10,
+    },
+    infoContainer: {
+     alignSelf:"center",
+     alignItems:"center",
+     marginTop:16
     }
 });
