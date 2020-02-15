@@ -52,8 +52,6 @@ export default class MafundiConnect extends Component {
                     renderItem={({ item }) => <View style={styles.GridViewBlockStyle}>
                         <Icon name={item.navOptionThumb} size={25} color="#808080" />
                         <Text style={styles.GridViewInsideTextItemStyle} onPress={() => {
-                            //alert(item.navigateTo);
-                            //global.currentScreenIndex = key;
                             this.props.navigation.navigate(`MafundiList`, { id: item._id });
                         }} >
                             {item.name} </Text>
