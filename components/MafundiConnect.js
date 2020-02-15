@@ -30,7 +30,6 @@ export default class MafundiConnect extends Component {
         fetch(url)
             .then(res => res.json())
             .then(res => {
-                console.log('test',res);
                 this.setState({
                     GridViewItems: res,
                     error: res.error || null,
@@ -39,7 +38,7 @@ export default class MafundiConnect extends Component {
                 this.arrayholder = res.results;
             })
             .catch(error => {
-                console.log('test',error);
+                console.log('test', error);
                 this.setState({ error, loading: false });
             });
     };
@@ -55,7 +54,7 @@ export default class MafundiConnect extends Component {
                         <Text style={styles.GridViewInsideTextItemStyle} onPress={() => {
                             //alert(item.navigateTo);
                             //global.currentScreenIndex = key;
-                            this.props.navigation.navigate(`MafundiList/${item.navigateTo}`);
+                            this.props.navigation.navigate(`MafundiList`, { id: item._id });
                         }} >
                             {item.name} </Text>
                     </View>}
