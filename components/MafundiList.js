@@ -20,18 +20,19 @@ export default class MafundiList extends Component {
   }
 
   makeRemoteRequest = () => {
-    const url = `https://randomuser.me/api/?&results=20`;
+    //const url = `https://randomuser.me/api/?&results=20`;
+    const url =`http://172.20.10.4:4500/api/v1/users`;
     this.setState({ loading: true });
 
     fetch(url)
       .then(res => res.json())
       .then(res => {
         this.setState({
-          data: res.results,
-          error: res.error || null,
+          data: res,
+          error: null,
           loading: false,
         });
-        this.arrayholder = res.results;
+        this.arrayholder = res;
       })
       .catch(error => {
         this.setState({ error, loading: false });
@@ -57,7 +58,7 @@ export default class MafundiList extends Component {
     });
 
     const newData = this.arrayholder.filter(item => {
-      const itemData = `${item.name.title.toUpperCase()} ${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
+      const itemData = `${item.name.title.toUpperCase()} ${item.firstName.toUpperCase()} ${item.lastName.toUpperCase()}`;
       const textData = text.toUpperCase();
 
       return itemData.indexOf(textData) > -1;
@@ -94,8 +95,8 @@ export default class MafundiList extends Component {
           data={this.state.data}
           renderItem={({ item }) => (
             <ListItem
-              leftAvatar={{ source: { uri: item.picture.thumbnail } }}
-              title={`${item.name.first} ${item.name.last}`}
+              leftAvatar={{ source: { uri: 'https://avatars1.githubusercontent.com/u/13550194?s=460&v=4' } }}
+              title={`${item.firstName} ${item.lastName}`}
               subtitle={item.email}
               onPress={() => {
                 //alert(item.navigateTo);
