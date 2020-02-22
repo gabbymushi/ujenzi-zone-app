@@ -1,7 +1,7 @@
 //This is an example code for Navigation Drawer with Custom Side bar//
 import React, { Component } from 'react';
 //import react in our code.
-import { StyleSheet, FlatList, Text, View, Alert, Platform } from 'react-native';
+import { TouchableOpacity,StyleSheet, FlatList, Text, View, Alert, Platform } from 'react-native';
 // import all basic components
 import { Icon } from 'react-native-elements';
 
@@ -9,54 +9,53 @@ export default class MafundiConnect extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            GridViewItems: [
-                { key: 'Fundi Nyumba', navOptionThumb: 'build',navigateTo:'MafundiList' },
-                { key: 'Fundi Paa', navOptionThumb: 'build',navigateTo:'MafundiList1' },
-                { key: 'Quick Services', navOptionThumb: 'build',navigateTo:'MafundiList2' },
-                { key: 'Four', navOptionThumb: 'build' ,navigateTo:'MafundiList3'},
-                { key: 'Five', navOptionThumb: 'build' ,navigateTo:'MafundiList4'},
-                { key: 'SiX', navOptionThumb: 'build' ,navigateTo:'MafundiList5'},
-                { key: 'Seven', navOptionThumb: 'build',navigateTo:'MafundiList6' },
-                { key: 'Eight', navOptionThumb: 'build',navigateTo:'MafundiList7' },
-                /*           { key: 'Five' },
-                          { key: 'Six' },
-                          { key: 'Seven' },
-                          { key: 'Eight' },
-                          { key: 'Nine' },
-                          { key: 'Ten' },
-                          { key: 'Eleven' },
-                          { key: 'Twelve' },
-                          { key: 'Thirteen' },
-                          { key: 'Fourteen' },
-                          { key: 'Fifteen' },
-                          { key: 'Sixteen' },
-                          { key: 'Seventeen' },
-                          { key: 'Eighteen' },
-                          { key: 'Nineteen' },
-                          { key: 'Twenty' } */
-            ]
+            GridViewItems: [],
+            loading: false,
+            error: null,
         }
+        this.arrayholder = [];
     }
     GetGridViewItem(item) {
 
         Alert.alert(item);
 
     }
+    componentDidMount() {
+        this.getCategories();
+    }
+    getCategories = () => {
+        const url = `http://172.20.10.4:4500/api/v1/categories`;
+        this.setState({ loading: true });
+
+        fetch(url)
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    GridViewItems: res,
+                    error: res.error || null,
+                    loading: false,
+                });
+                this.arrayholder = res.results;
+            })
+            .catch(error => {
+                console.log('test', error);
+                this.setState({ error, loading: false });
+            });
+    };
     //Screen1 Component
     render() {
         return (
             <View style={styles.MainContainer}>
                 <FlatList
                     data={this.state.GridViewItems}
-                    renderItem={({ item }) => <View style={styles.GridViewBlockStyle}>
+                    keyExtractor={(item, index) => item._id}
+                    renderItem={({ item }) => <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                        this.props.navigation.navigate(`MafundiList`, { id: item._id });
+                    }} style={styles.GridViewBlockStyle}>
                         <Icon name={item.navOptionThumb} size={25} color="#808080" />
-                        <Text style={styles.GridViewInsideTextItemStyle} onPress={() => {
-                            //alert(item.navigateTo);
-                            //global.currentScreenIndex = key;
-                            this.props.navigation.navigate(item.navigateTo);
-                        }} >
-                            {item.key} </Text>
-                    </View>}
+                        <Text style={styles.GridViewInsideTextItemStyle} >
+                            {item.name} </Text>
+                    </TouchableOpacity>}
                     numColumns={2}
                 />
             </View>

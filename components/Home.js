@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import {
+  createMaterialTopTabNavigator,
 } from 'react-navigation';
 
-import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import StickyTabs from '../sticky-tabs/StickyTabs';
 
 import Header from './Header';
@@ -34,7 +34,7 @@ const TabNavigator = createMaterialTopTabNavigator(
   }
 );
 
-export default class FundiProfile extends Component {
+export default class Home extends Component {
   
   static router = TabNavigator.router;
 
