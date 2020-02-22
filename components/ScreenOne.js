@@ -1,7 +1,7 @@
 //This is an example code for Navigation Drawer with Custom Side bar//
 import React, { Component } from 'react';
 //import react in our code.
-import { AppRegistry, StyleSheet, FlatList, Text, View, Alert, Platform } from 'react-native';
+import {TouchableOpacity, AppRegistry, StyleSheet, FlatList, Text, View, Alert, Platform } from 'react-native';
 // import all basic components
 import { Icon } from 'react-native-elements';
 
@@ -32,15 +32,13 @@ export default class ScreenOne extends Component {
             <View style={styles.MainContainer}>
                 <FlatList
                     data={this.state.GridViewItems}
-                    renderItem={({ item }) => <View style={styles.GridViewBlockStyle}>
+                    renderItem={({ item }) => <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate(item.navigateTo);
+                    }} style={styles.GridViewBlockStyle}>
                         <Icon name={item.navOptionThumb} size={25} color="#808080" />
-                        <Text style={styles.GridViewInsideTextItemStyle} onPress={() => {
-                            //alert(item.navigateTo);
-                            //global.currentScreenIndex = key;
-                            this.props.navigation.navigate(item.navigateTo);
-                        }} >
+                        <Text style={styles.GridViewInsideTextItemStyle}  >
                             {item.key} </Text>
-                    </View>}
+                    </TouchableOpacity>}
                     numColumns={2}
                 />
             </View>
