@@ -1,7 +1,7 @@
 //This is an example code for Navigation Drawer with Custom Side bar//
 import React, { Component } from 'react';
 //import react in our code.
-import { StyleSheet, FlatList, Text, View, Alert, Platform } from 'react-native';
+import { TouchableOpacity,StyleSheet, FlatList, Text, View, Alert, Platform } from 'react-native';
 // import all basic components
 import { Icon } from 'react-native-elements';
 
@@ -49,13 +49,13 @@ export default class MafundiConnect extends Component {
                 <FlatList
                     data={this.state.GridViewItems}
                     keyExtractor={(item, index) => item._id}
-                    renderItem={({ item }) => <View style={styles.GridViewBlockStyle}>
+                    renderItem={({ item }) => <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                        this.props.navigation.navigate(`MafundiList`, { id: item._id });
+                    }} style={styles.GridViewBlockStyle}>
                         <Icon name={item.navOptionThumb} size={25} color="#808080" />
-                        <Text style={styles.GridViewInsideTextItemStyle} onPress={() => {
-                            this.props.navigation.navigate(`MafundiList`, { id: item._id });
-                        }} >
+                        <Text style={styles.GridViewInsideTextItemStyle} >
                             {item.name} </Text>
-                    </View>}
+                    </TouchableOpacity>}
                     numColumns={2}
                 />
             </View>
