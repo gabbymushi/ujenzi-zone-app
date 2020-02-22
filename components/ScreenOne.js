@@ -32,7 +32,7 @@ export default class ScreenOne extends Component {
             <View style={styles.MainContainer}>
                 <FlatList
                     data={this.state.GridViewItems}
-                    renderItem={({ item }) => <TouchableOpacity onPress={() => {
+                    renderItem={({ item }) => <TouchableOpacity activeOpacity={0.8} onPress={() => {
                         this.props.navigation.navigate(item.navigateTo);
                     }} style={styles.GridViewBlockStyle}>
                         <Icon name={item.navOptionThumb} size={25} color="#808080" />
