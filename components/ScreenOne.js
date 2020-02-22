@@ -18,22 +18,6 @@ export default class ScreenOne extends Component {
                 { key: 'SiX', navOptionThumb: 'build',navigateTo:'MafundiConnect5' },
                 { key: 'Seven', navOptionThumb: 'build',navigateTo:'MafundiConnect6' },
                 { key: 'Eight', navOptionThumb: 'build' ,navigateTo:'MafundiConnect7'},
-                /*           { key: 'Five' },
-                          { key: 'Six' },
-                          { key: 'Seven' },
-                          { key: 'Eight' },
-                          { key: 'Nine' },
-                          { key: 'Ten' },
-                          { key: 'Eleven' },
-                          { key: 'Twelve' },
-                          { key: 'Thirteen' },
-                          { key: 'Fourteen' },
-                          { key: 'Fifteen' },
-                          { key: 'Sixteen' },
-                          { key: 'Seventeen' },
-                          { key: 'Eighteen' },
-                          { key: 'Nineteen' },
-                          { key: 'Twenty' } */
             ]
         }
     }
